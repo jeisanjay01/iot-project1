@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <title>Bouncing Ball Animation</title>
+    <style>
+      body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        background-color: #f0f0f0;
+        margin: 0;
+      }
+
+      .box {
+        position: relative;
+        width: 400px;
+        height: 300px;
+        border: 4px solid #e40f0fe2;
+        border-radius: 10px;
+        overflow: hidden;
+        background-color: rgb(255, 255, 255);
+      }
+
+      .ball {
+        position: absolute;
+        width: 40px;
+        height: 40px;
+        background-color: rgb(27, 214, 65);
+        border-radius: 50%;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="box">
+      <div class="ball" id="ball"></div>
+    </div>
+
+    <script>
+      const ball = document.getElementById("ball");
+      let x = 0,
+        y = 0;
+      let dx = 2,
+        dy = 3;
+      const box = document.querySelector(".box");
+      const boxWidth = box.clientWidth;
+      const boxHeight = box.clientHeight;
+      const ballSize = ball.clientWidth;
+
+      function animate() {
+        x += dx;
+        y += dy;
+
+        if (x + ballSize >= boxWidth || x <= 0) dx *= -1;
+        if (y + ballSize >= boxHeight || y <= 0) dy *= -1;
+
+        ball.style.left = x + "px";
+        ball.style.top = y + "px";
+
+        requestAnimationFrame(animate);
+      }
+
+      animate();
+    </script>
+  </body>
+</html>
